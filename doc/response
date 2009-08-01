@@ -1,0 +1,31 @@
+- Purpose:
+  - Provide HTML content for a web request.
+  - Expand macros in an HTML template.
+
+- Assumptions:
+  - VARIABLE s points to beginning of response template.
+  - VARIABLE end points past last byte of response template.
+  - Any template expansion handlers referenced by the response
+    template must already be defined.
+
+- Effects:
+  - VARIABLE s = end
+  - HERE points past last byte of response expansion.
+  - Response expansion sent to stdout for web server.
+
+- Comments:
+  - -eos = true iff at end of response template.
+  - -eon = true iff at end of current macro name token.
+  - name yields a (caddr,u) string containing the name of the macro,
+    where u >= 0.  If u=0, unexpected end of token was discovered.
+  - macro consumes the sentinel ~ then executes the macro's handler.
+
+- Intended use:
+    ( perform speculative data acquisition here )
+    ( define macro handlers here )
+    ( read appropriate template file into core here )
+    VARIABLE s    template-start-addr s !
+    VARIABLE end  template-end-addr end !
+    include response.fs
+    bye
+
