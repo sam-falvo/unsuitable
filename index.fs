@@ -11,28 +11,21 @@ variable h
 : grab  begin here 65536 h @ read-file throw dup allot 0= until ;
 : slurp open grab close ;
 
-variable template
-variable #template
-here template ! slurp here template @ - #template !
-
-variable end
 variable s
+variable end
+here s ! slurp here end !
+
 : >string     over + end ! s ! ;
 : c           s @ c@ ;
 : -eos        s @ end @ < ;
 : -eon        c 32 > -eos and ;
 : name        s @ begin -eon while 1 s +! repeat s @ over - ;
 : macro       1 s +! name sfind if execute then ;
-: ch          c [char] ~ over xor if c, else macro then 1 s +! ;
-: expand      >string ( s <= end ) begin -eos while ch repeat ( s = end ) ;
+: ch          c [char] ~ over xor if c, else drop macro then 1 s +! ;
+: expand      begin -eos while ch repeat ;
 
 variable response
-variable #response
-here response !
-template @ #template @ expand
-here response @ - #response !
-
-response @ #response @ type
+here response !  expand  response @ here over - type
 
 bye
 
