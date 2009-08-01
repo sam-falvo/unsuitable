@@ -2,7 +2,7 @@
 
 ." Content-type: text/html" cr cr
 
-: respond         over + begin 2dup < while over c@ c, swap char+ swap repeat 2drop ;
+: respond         2dup here swap move  allot drop ;
 : last-five-posts S" No posts exist in the database." respond ;
 
 variable h
