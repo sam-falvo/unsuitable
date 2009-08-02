@@ -1,0 +1,11 @@
+- Purpose:
+  - Provide tools to format the blocks file schema.
+
+- Assumptions:
+  - Brand-new blocks file or recovering from a damaged, existing blocks file.
+
+- Intended use:
+  - DO NOT use on a live, working schema.
+    - Write separate tools to migrate schema to a newer version.
+  - Invoke "all0" to create a completely new schema.
+
