@@ -1,0 +1,56 @@
+- Purpose:
+  - Provide general purpose, persistent storage for arbitrary
+    quantities of bytes.
+
+- Basic Architecture:
+
+  - Handle table
+    - Maps local record number (LRN) to (block address, length) pair.
+      - LRN = byte offset into handle arrays
+    - Consists of /hfields bytes worth of block storage per column
+    - two columns of data
+      - addrs = block-vector of object block addresses
+      - lens = block-vector of object lengths
+    - Accessors
+      - addr/addr! get/set the current object's block address
+      - (addr = -1) => handle is free for use; else, org <= addr < end
+      - length/length! get/set the current object's length
+      - length undefined if (addr = -1)
+      - gob/gob! (General OBject) gets/sets current object handle
+      - put assigns a new handle and stores the core-resident object.
+
+  - Octet Store
+    - org and end are byte pointers into block address space.
+        - Thus, storage starts on org 1024 / block.
+        - And, ends on end 1024 / block.
+    - Unless otherwise specified, offsets are byte-offsets
+      relative to org.
+    - For maximum space efficiency, all objects stored on
+      byte boundaries, not block boundaries.
+      - Numerous blog entries and comments fall substantially
+        short of 1024 bytes; thus, this reduces internal
+        fragmentation to zero.
+    - Allocation works through offset-bumping.
+      - Current offset found in block 1
+    - Needs garbage collection.
+
+- Comments:
+  - fence = byte address in block-space of next free byte
+  - (Persistent) VARIABLE fencepost = offset in bytes from org
+  - archive places data into the general store.  Assumes caller
+    knows data's location already.
+    - part ( a u -- b v ) writes a (sub-)block of data to
+      storage
+      - Let n = the number of bytes left in the current block
+        referred to by fence (calculated by partial)
+      - Preconditions:
+        - a points at start of string in core
+        - u = length of the string in core
+        - (org <= fence <= end) /\ (org <= fence+n <= end)
+      - Postconditions:
+        - a <= b = a+n <= address of byte past end of string
+        - 0 <= v = u-n <= u
+        - (org <= fence <= end) /\ (fence = old_fence + n)
+        - data copied to block storage
+        - block marked for update
+

@@ -1,0 +1,5 @@
+- Purpose:
+  - Provides persistent storage of entire blog state
+  - Block 1:
+    - 0 cells: general object storage offset pointer
+
