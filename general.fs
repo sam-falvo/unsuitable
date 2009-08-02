@@ -5,8 +5,9 @@
 : part       2dup partial dup >r place r> /string ;
 : archive    begin dup while part repeat 2drop ;
 
+: remaining  over 1023 and 1024 swap - min ;
 : obtain     swap >core swap here swap dup >r move r> allot ;
-: part       2dup partial dup >r obtain r> /string ;
+: part       2dup remaining dup >r obtain r> /string ;
 : retrieve,  begin dup while part repeat 2drop ;
 
 

@@ -58,4 +58,18 @@
         - (gorg <= fence <= gend) /\ (fence = old_fence + n)
         - data copied to block storage
         - block marked for update
+  - retrieve, recovers data from the store, placing it HERE, and
+    alloting as appropriate.
+    - part ( a u -- b v ) reads a (sub-)block of data from storage
+    - Let n = the number of bytes left in the current block
+      referred to by a (calculated by remaining)
+      - Preconditions:
+        - a points at desired GOB; it's a block address!
+        - u = length of desired gob
+        - (gorg <= a <= gend) /\ (gorg <= a+u <= gend)
+      - Postconditions:
+        - a <= b = a+u <= address of next GOB.
+        - 0 <= v = u-n <= u
+        - fence = old fence
+        - data copied to HERE
 
