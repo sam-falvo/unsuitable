@@ -6,7 +6,7 @@
 : last-five-posts S" No posts exist in the database." respond ;
 
 variable h
-: open  S" blog-templates/index.html" r/o open-file throw h ! ;
+: open  S" theme/index.html" r/o open-file throw h ! ;
 : close h @ close-file throw ;
 : grab  begin here 65536 h @ read-file throw dup allot 0= until ;
 : slurp open grab close ;
