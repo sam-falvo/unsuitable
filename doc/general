@@ -4,6 +4,7 @@
 
 - Assumptions:
   - mappings.fs already compiled
+  - lens = addrs + /hfields
 
 - Basic Architecture:
 
@@ -21,6 +22,7 @@
       - length undefined if (addr = -1)
       - gob/gob! (General OBject) gets/sets current object handle
       - put assigns a new handle and stores the core-resident object.
+      - get, copies current object to HERE and allots enough to protect object.
 
   - Octet Store
     - gorg and gend are byte pointers into block address space.

@@ -5,6 +5,10 @@
 : part       2dup partial dup >r place r> /string ;
 : archive    begin dup while part repeat 2drop ;
 
+: obtain     swap >core swap here swap dup >r move r> allot ;
+: part       2dup partial dup >r obtain r> /string ;
+: retrieve,  begin dup while part repeat 2drop ;
+
 
 : @f         >core @ ;
 : !f         >core ! update ;
@@ -19,4 +23,5 @@ variable lrn
              drop addrs - exit then swap cell+ swap repeat
              0= abort" Out of GOB handles." ;
 : put        available gob! fence -rot dup length! archive addr! ;
+: get,       addr length retrieve, ;
 
