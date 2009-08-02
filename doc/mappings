@@ -1,0 +1,7 @@
+- Purpose:
+  - Provides a convenient location for the administrator to configure
+    which disk blocks belong to which database the blog needs.
+
+- Assumptions:
+  - No subsequent code shadows any words defined in this module.
+
