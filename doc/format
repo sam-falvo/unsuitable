@@ -9,3 +9,8 @@
     - Write separate tools to migrate schema to a newer version.
   - Invoke "all0" to create a completely new schema.
 
+- Comments:
+  - gos0 erases the entire general object store.  All data irretrievably lost.
+  - gosh0 marks all GOS handles as free.
+  - articles0 marks all article rows as free.
+
