@@ -1,0 +1,21 @@
+- The word "available" appears, almost identical to each other, in both general.fs and articles.fs.
+  - Refactor into a single "available" implementation.
+  - Success => ( bp_start bp_end -- bp // r: ip -- ), where bp_start <= bp < bp_end
+  - Failure => ( bp_start bp_end -- // r: ip -- ip )
+  - Something like (untested),
+
+    : available   begin 2dup < while over @f -1 = if drop r> drop exit then swap cell+ swap repeat 2drop ;
+
+  - Then, in general.fs:
+
+    : (next)  addrs /hfields over + available -1 abort" Out of general handles" ;
+    : next    (next) addrs - ;
+    ...
+    next gob! ..etc..
+
+  - Then, in articles.fs:
+  
+    : (next)  articleIds /afields over + available -1 abort" Out of article records" ;
+    : next    (next) articleIds - ;
+    : nextRow next article!  a-nextId @ dup articleId! 1+ a-nextId ! update ;
+
