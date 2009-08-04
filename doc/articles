@@ -1,0 +1,21 @@
+- Purpose:
+  - Maintains the articles table.
+  - Each column takes /afields bytes in block space.
+  - Columns:
+    - articleId (integer).  Uniquely identifies the article amongst all others.
+      - (articleId = -1) => row is free for re-use and all other fields undefined.
+      - Otherwise, 0 < articleId.
+  - Accessors:
+    - article/article! gets/sets current article record.
+    - articleId/articleId! gets/sets ID
+
+- Comments:
+  - Persistent VARIABLE a-nextId (block 1) = the ID to assign the next article.
+  - VARIABLE arn = current article record number.
+  - available = next available record number.
+  - Note that record numbers (offsets into column arrays) /= article IDs.
+    - record numbers used by software to identify an article.
+    - article IDs used by humans to identify an article via the URL.
+    - Distinction required to allow deletions of articles, where the next
+      article contribution will re-use the vacated table row.
+

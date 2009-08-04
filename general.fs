@@ -11,8 +11,6 @@
 : retrieve,  begin dup while part repeat 2drop ;
 
 
-: @f         >core @ ;
-: !f         >core ! update ;
 variable lrn
 : addr       addrs lrn @ + @f ;
 : length     lens lrn @ + @f ;
@@ -22,7 +20,7 @@ variable lrn
 : gob!       lrn ! ;
 : available  addrs lens begin 2dup < while over @f -1 = if
              drop addrs - exit then swap cell+ swap repeat
-             0= abort" Out of GOB handles." ;
+             abort" Out of GOB handles." ;
 : put        available gob! fence -rot dup length! archive addr! ;
 : get,       addr length retrieve, ;
 

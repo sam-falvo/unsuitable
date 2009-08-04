@@ -1,5 +1,7 @@
 : >core     dup 10 rshift block swap 1023 and + ;
 : blocks    1024 * ;
+: @f        >core @ ;
+: !f        >core ! update ;
 
 ( block 1 = meta-block )
 : g-fencepost   1 block ;
