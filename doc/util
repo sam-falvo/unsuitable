@@ -1,0 +1,8 @@
+- Purpose: Random utilities for development work
+- Comments:
+  - import imports a new article lead-only article from a file "lead.txt".
+    - Use as follows:
+    - 1) Edit a file "lead.txt" to include the desired text.
+    - 2) Invoke inside Forth: S" My Desired Title" import
+    - 3) For the paranoid: flush
+

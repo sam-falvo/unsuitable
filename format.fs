@@ -9,4 +9,6 @@ include mappings.fs
 : rows0     articleIds /afields over + eachBlock 1024 -1 fill ;
 : articles0 rows0 a-nextId off update ;
 
-: all0      gos0 gosh0 articles0 ;
+: vars0     1 block 1024 0 fill  1 a-nextId ! update ;
+
+: all0      gos0 gosh0 articles0 vars0 ;

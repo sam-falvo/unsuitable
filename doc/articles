@@ -5,9 +5,14 @@
     - articleId (integer).  Uniquely identifies the article amongst all others.
       - (articleId = -1) => row is free for re-use and all other fields undefined.
       - Otherwise, 0 < articleId.
+    - title (GOS).  Human-visible title.
+    - lead (GOS).  Human and RSS-visible content.
+    - body (GOS).  Human visible content (continued after the lead).
+      - (body = -1) => no body content exists.
   - Accessors:
     - article/article! gets/sets current article record.
     - articleId/articleId! gets/sets ID
+    - title/title!, lead/lead!, body/body! work as you'd expect.
 
 - Comments:
   - Persistent VARIABLE a-nextId (block 1) = the ID to assign the next article.
