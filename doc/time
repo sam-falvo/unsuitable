@@ -1,5 +1,14 @@
 - Purpose:
   - Provide a means of encoding and decoding timestamps.
+- Assumptions
+  - .time assumes TYPE and EMIT are vectored appropriately.
+- Intended Use
+  : embed    here swap dup allot move ;
+  : >here    ['] embed is type   ['] c, is emit ;
+  : >console ['] (type) is type  ['] (emit) is emit ;
+
+  here >here .time here over - >console type
+
 - Comments
   - Timestamps are ordinals, and may be compared with Forth's built-in relational operators.
   - Bit-packed structure

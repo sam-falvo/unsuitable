@@ -2,8 +2,14 @@
 
 ." Content-type: text/html" cr cr
 
-: respond         2dup here swap move  allot drop ;
-: last-five-posts S" No posts exist in the database." respond ;
+require mappings.fs
+require general.fs
+require articles.fs
+require time.fs
+
+: respond   here swap dup allot move ;
+require latest-5.fs
+: last-five-posts scan latest ;
 
 variable h
 : open  S" theme/index.html" r/o open-file throw h ! ;
@@ -14,6 +20,8 @@ variable h
 variable s
 variable end
 here s ! slurp here end !
+here constant h1
 include response.fs
+here constant h2
 bye
 
