@@ -1,0 +1,14 @@
+- Purpose:
+  - Scans the article table for the latest five postings
+- Assumes
+  - articles.fs loaded
+- Comments:
+  - e0 = address of first of five record references
+  - e4 = address of last record reference
+  - ep = pointer to head of current (sub)vector.
+  - e0..e4 obeys invariant, given T(x) = (x article! timestamp):
+    - (e0 <= ep < e5)
+    - forall(i, (e0 <= i <= ep) implies (i@ <> nil))
+    - forall(i, (e1 <= i <= ep) implies (T(i@) <= T((i-1)@)))
+    - forall(i, (ep+1 <= i < e5) implies (i@ = nil))
+
