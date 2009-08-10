@@ -16,9 +16,10 @@ variable ep
            over articleIds - article! consider swap cell+ swap repeat 2drop ;
 
 
-: .gob     gob! here get, here over - respond ;
+: .gob     gob! get, ;
+: .goblink S\" <a href=\"/blog2/articles/" respond articleId s>d <# #s #> respond S\" \">" respond .gob S" </a>" respond ;
 : div      respond execute s" </div>" respond ;
-: t        title .gob ;
+: t        title .goblink ;
 : .title   ['] t S\" <div id=\"blog-article-index-title\">" div ;
 : >resp    ['] respond is type ['] c, is emit ;
 : >con     ['] (type) is type  ['] (emit) is emit ;
