@@ -1,8 +1,8 @@
 #! /usr/bin/env gforth
 
 ." Content-type: text/html" cr cr
-.\" <html><head><title>HI!</title></head><body><table width=\"100%\"><tr><th>ENV VAR NAME</th><th>ENV VAR VALUE</th></tr>"
-: r ." <tr><td>" type ." </td><td>" type ." </td></tr>" ;
+.\" <html><head><title>HI!</title></head><body><table width=\"100%\"><tr><th>ENV VAR NAME</th><th>ENV VAR VALUE</th><th>ENV VAR LEN</th></tr>"
+: r ." <tr><td>" type ." </td><td>" 2dup type ." </td><td>" . drop ." </td></tr>" ;
 S" REQUEST_METHOD" getenv S" REQUEST_METHOD" r
 S" REMOTE_ADDR" getenv S" REMOTE_ADDR" r
 S" SCRIPT_NAME" getenv S" SCRIPT_NAME" r
