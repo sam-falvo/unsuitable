@@ -1,0 +1,35 @@
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+div {
+    font-family: "Times New Roman", serif;
+}
+
+div.blogHead {
+    font-size: 250%;
+}
+
+div.blogSubhead {
+    font-size: 150%;
+}
+
+div.blogArticleIndexTitle {
+    font-size: 150%;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+div.blogArticleIndexLead {
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
+hr {
+    color: black;
+    background-color: black;
+    height: 1;
+    border: 0;
+}
+

@@ -20,15 +20,15 @@ variable ep
 : .goblink S\" <a href=\"/blog2/articles/" respond articleId s>d <# #s #> respond S\" \">" respond .gob S" </a>" respond ;
 : div      respond execute s" </div>" respond ;
 : t        title .goblink ;
-: .title   ['] t S\" <div id=\"blog-article-index-title\">" div ;
+: .title   ['] t S\" <div class=\"blogArticleIndexTitle\">" div ;
 : >resp    ['] respond is type ['] c, is emit ;
 : >con     ['] (type) is type  ['] (emit) is emit ;
 : t        >resp timestamp .time >con ;
-: .timestamp ['] t S\" <div id=\"blog-article-index-ts\">" div ;
+: .timestamp ['] t S\" <div class=\"blogArticleIndexTimestamp\">" div ;
 : l        lead .gob ;
-: .lead    ['] l S\" <div id=\"blog-article-index-lead\">" div ;
+: .lead    ['] l S\" <div class=\"blogArticleIndexLead\">" div ;
 : entry    .title .timestamp .lead ;
 : e        dup @ -1 xor if dup @ article! entry then cell+ ;
 : l5       e0 e e e e e drop ;
-: latest   ['] l5 S\" <div id=\"blog-article-index\">" div ;
+: latest   ['] l5 S\" <div class=\"blogArticleIndex\">" div ;
 
