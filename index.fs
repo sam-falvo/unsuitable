@@ -9,7 +9,7 @@ require time.fs
 
 : respond   here swap dup allot move ;
 require latest-5.fs
-: last-five-posts scan latest ;
+: last-five-posts   scan latest ;
 
 variable h
 : open  S" theme/index.html" r/o open-file throw h ! ;
