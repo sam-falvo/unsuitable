@@ -1,3 +1,15 @@
 - Purpose:
   - Provide basic URL dispatching
+- Comments
+  - URL is broken into three parts:
+    - Web server prefix:  http://www.falvotech.com/blog
+    - Forth URL handler:                               /articles
+    - Optional parameters for the handler:                      /1002
+  - For any given URL handler H, dispatcher works by INCLUDE-ing the file m-H.fs
+  - Defines several constants
+    - &path-info = address of PATH_INFO environment variable value
+    - /path-info = length of PATH_INFO
+    - end-of-url = address just past last byte of PATH_INFO
+    - &parameters = address of parameters, if specified
+      - &parameters = end-of-url ==> no parameters specified
 
