@@ -10,8 +10,8 @@ S" PATH_INFO" getenv constant /path-info constant &path-info
 
 : -eou   dup end-of-url >= if r> drop then ;
 : -/     dup c@ [char] / = if r> drop then ;
-: name   begin -eou -/ char+ again ;
-module name constant &parameters
+: slash  begin -eou -/ char+ again ;
+module slash constant &parameters
 
 : base        module &parameters over - here swap dup allot move ;
 : extension   S" .fs" here swap dup allot move ;
