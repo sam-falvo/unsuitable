@@ -2,18 +2,20 @@
 
 S" PATH_INFO" getenv constant /path-info constant &path-info
 
-: default   S" index.fs" included bye ;
-: chk  /path-info 2 u< if default then ;
-chk
+: |url|>=2  /path-info 2 u< if s" index.fs" included bye then ;
+|url|>=2
 
-&path-info /path-info + constant end
-&path-info 1+ constant token
-: path   dup end >= if r> drop then ;
-: slash  dup c@ [char] / = if r> drop then ;
-: name   begin path slash char+ again ;
-: base   token dup name over - here swap dup allot move ;
+&path-info /path-info + constant end-of-url
+&path-info 1+ constant module
+
+: -eou   dup end-of-url >= if r> drop then ;
+: -/     dup c@ [char] / = if r> drop then ;
+: name   begin -eou -/ char+ again ;
+module name constant &parameters
+
+: base        module &parameters over - here swap dup allot move ;
 : extension   S" .fs" here swap dup allot move ;
-: filename   base extension ;
-: module   here filename here over - included ;
-module bye
+: filename    base extension ;
+: dispatch    here filename here over - included ;
+dispatch bye
 
