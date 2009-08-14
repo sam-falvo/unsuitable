@@ -20,8 +20,6 @@ variable h
 variable s
 variable end
 here s ! slurp here end !
-here constant h1
 include response.fs
-here constant h2
 bye
 
