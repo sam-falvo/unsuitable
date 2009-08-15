@@ -21,9 +21,9 @@ variable ep
 : div      respond execute s" </div>" respond ;
 : t        title .goblink ;
 : .title   ['] t S\" <div class=\"blogArticleIndexTitle\">" div ;
-: >resp    ['] respond is type ['] c, is emit ;
+: >web     ['] respond is type ['] c, is emit ;
 : >con     ['] (type) is type  ['] (emit) is emit ;
-: t        >resp timestamp .time >con ;
+: t        >web timestamp .time ."  &mdash; Samuel A. Falvo II" >con ;
 : .timestamp ['] t S\" <div class=\"blogArticleIndexTimestamp\">" div ;
 : l        lead .gob ;
 : .lead    ['] l S\" <div class=\"blogArticleIndexLead\">" div ;
