@@ -16,8 +16,9 @@
 : .m          mo 3 * months + 3 type space ;
 : .d          dy s>d <# # # #> type space ;
 : .ymd        dup .y dup .m .d ;
+: .dmy        dup .d dup .m .y ;
 : .h          hr s>d <# # # #> type ;
 : .m          mn s>d <# # # #> type ;
 : .hm         dup .h [char] : emit .m ;
-: .time       dup .ymd .hm ;
-
+: .time       dup .ymd .hm ."  PDT" ;
+: .time822    dup .dmy .hm ."  PDT" ;
