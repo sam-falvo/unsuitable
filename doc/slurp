@@ -1,0 +1,10 @@
+- Purpose:
+  - Provides file "slurping".
+  - To slurp a file is to read it, in its entirety, into core.
+- Comments
+  - slurp ( caddr u -- )
+    - Reads the file specified by (caddr u) into RAM at HERE.
+    - ALLOTs as necessary
+    - Caller is assumed to keep track of HERE to determine final buffer size
+    - Caller is assumed to understand that enough dictionary space exists to hold the file read.
+

@@ -19,6 +19,7 @@
   - name yields a (caddr,u) string containing the name of the macro,
     where u >= 0.  If u=0, unexpected end of token was discovered.
   - macro consumes the sentinel ~ then executes the macro's handler.
+  - Macros which aren't defined are consumed silently; they are considered No-ops.
 
 - Intended use:
     ( perform speculative data acquisition here )

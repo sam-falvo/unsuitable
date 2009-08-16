@@ -1,20 +1,9 @@
 create e0  5 cells allot
 e0 5 cells -1 fill
-e0 4 cells + constant e4
-e4 cell+ constant e5
+e0 4 cells + constant en-1
+en-1 cell+ constant en
 variable ep
-
-: insert   ep @ dup cell+ over e4 swap - move ;
-: nil      ep @ @ -1 = if article ep @ ! r> drop then ;
-: eol      ep @ e5 >= if r> drop then ;
-: Te<Tr    article ep @ @ article! timestamp swap article! timestamp <
-           if insert article ep @ ! r> drop then ;
-: Te>=Tr   [ 1 cells ] literal ep +! ;
-: sort     e0 ep ! begin eol nil Te<Tr Te>=Tr again ;
-: consider articleId -1 xor if sort then ;
-: scan     articleIds dup /afields + begin 2dup < while
-           over articleIds - article! consider swap cell+ swap repeat 2drop ;
-
+include latest.fs
 
 : .gob     gob! get, ;
 : .goblink S\" <a href=\"/blog2/blog.fs/articles/" respond articleId s>d <# #s #> respond S\" \">" respond .gob S" </a>" respond ;

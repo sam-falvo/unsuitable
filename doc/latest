@@ -1,0 +1,21 @@
+- Purpose
+  - Provide the latest N blog articles posted.
+- Assumptions
+  - e0 ( -- addr ) points to the beginning of the sort buffer
+  - en-1 ( -- addr ) points to the last cell in the sort buffer
+  - en ( -- addr ) = en-1 + 1 cell
+  - VARIABLE ep with invariant e0 <= ep < en
+  - Buffer from e0 to en pre-filled with -1
+
+- Comments
+  - scan ( -- ) Performs a full-table scan on the article database.  Upon completion, e0 will contain the article record number of the most recent blog posting.
+
+- Intended use:
+
+  create e0   N cells allot
+  e0 N cells -1 fill
+  e0 N-1 cells + constant en-1
+  en-1 cell+ constant en
+  variable ep
+  include latest.fs
+

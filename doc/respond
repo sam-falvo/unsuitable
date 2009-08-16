@@ -1,0 +1,9 @@
+- Purpose:
+  - Provide a means of queueing output when expanding macros
+- Intended Use
+  - S" This text is inserted literally into the output stream" respond
+- Comments
+  - respond ( caddr u -- ) places a copy of the string at (caddr u) at HERE, and ALLOTs to preserve it.
+  - >web ( -- )  redirects output from type/emit to the response buffer
+  - >con ( -- )  redirects output from type/emit to the console again
+
