@@ -1,0 +1,11 @@
+- Purpose
+  - Provides RSS 2.0 functionality for the blog
+  - Renders the 16 latest postings to the blog in RSS form.
+- Comments
+  - cache
+    - Used to prefetch all article leads in core
+    - p0..p16 are pointers to each article lead
+    - (p_n+1 - p_n) = length of lead n (zero if no lead exists)
+  - encode
+    - Used to XML-encode an HTML document for use with RSS' <description> tag.
+
