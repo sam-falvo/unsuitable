@@ -14,7 +14,8 @@ include latest.fs
 : >con     ['] (type) is type  ['] (emit) is emit ;
 : t        >web timestamp .time ."  &mdash; Samuel A. Falvo II" >con ;
 : .timestamp ['] t S\" <div class=\"blogArticleIndexTimestamp\">" div ;
-: l        lead .gob ;
+: c        >web ." (continued...)" >con ;
+: l        lead .gob  body 1+ if ['] c S\" <div class=\"blogArticleIndexContinued\">" div then ;
 : .lead    ['] l S\" <div class=\"blogArticleIndexLead\">" div ;
 : entry    .title .timestamp .lead ;
 : e        dup @ -1 xor if dup @ article! entry then cell+ ;

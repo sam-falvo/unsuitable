@@ -44,6 +44,12 @@ div.blogArticleTimestampAuthor {
     font-size: 125%;
 }
 
+div.blogArticleIndexContinued {
+    font-style: italic;
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
 div.blogArticleIndexTitle {
     font-size: 150%;
     font-weight: bold;
