@@ -9,4 +9,4 @@ require time.fs
 : b         -1 body! ;
 : import    available article! now timestamp! id t l b ;
 : w/body    S" body.txt" slurp-file put gob body! ;
-
+: hide      articleWithId! -1 articleId! update ;
