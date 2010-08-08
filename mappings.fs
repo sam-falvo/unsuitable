@@ -24,5 +24,5 @@ bodies /afields + constant timestamps
 
 ( blocks 256 .. 511 = General Object Store [256K version] )
 256 blocks constant gorg
-gorg 256 blocks + constant gend
+gorg 512 blocks + constant gend
 
