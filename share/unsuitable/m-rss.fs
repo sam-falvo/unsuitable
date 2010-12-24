@@ -4,6 +4,7 @@ require articles.fs
 require slurp.fs
 require time.fs
 require respond.fs
+require standard-macros.fs
 
 .( Content-type: application/rss+xml) cr cr
 
