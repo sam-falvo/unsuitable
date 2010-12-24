@@ -8,6 +8,6 @@
   <generator>Unsuitable</generator>
   <pubDate>~pubDate </pubDate>
   ~16items
-  <atom:link href="http://www.falvotech.com/blog2/blog.fs/rss" rel="self" type="application/rss+xml" />
+  <atom:link href="http://~domain~ /~path~ /blog.fs/rss" rel="self" type="application/rss+xml" />
  </channel>
 </rss>

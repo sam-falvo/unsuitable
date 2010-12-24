@@ -34,7 +34,7 @@ cache
 : encode      pp @ dup @ swap cell+ @ translate [ 1 cells ] literal pp +! ;
 
 : title         ." <title>" title gob! get, ." </title>" ;
-: (link)        ." http://www.falvotech.com/blog2/blog.fs/articles/" articleId . ;
+: (link)        ." http://" *domain* type ." /" *path* type ." /blog.fs/articles/" articleId . ;
 : link          ." <link>" (link) ." </link>" ;
 : ?more         body -1 xor if ." &lt;p&gt;&lt;i&gt;(continued . . .)&lt;/i&gt;&lt;/p&gt;" then ;
 : description   ." <description>" encode ?more ." </description>" ;

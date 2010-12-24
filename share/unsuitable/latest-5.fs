@@ -4,9 +4,10 @@ e0 4 cells + constant en-1
 en-1 cell+ constant en
 variable ep
 include latest.fs
+include standard-macros.fs
 
 : .gob     gob! get, ;
-: .goblink S\" <a href=\"/blog2/blog.fs/articles/" respond articleId s>d <# #s #> respond S\" \">" respond .gob S" </a>" respond ;
+: .goblink S\" <a href=\"/" respond path~ S\" /blog.fs/articles/" respond articleId s>d <# #s #> respond S\" \">" respond .gob S" </a>" respond ;
 : div      respond execute s" </div>" respond ;
 : t        title .goblink ;
 : .title   ['] t S\" <div class=\"blogArticleIndexTitle\">" div ;

@@ -4,6 +4,7 @@ require articles.fs
 require slurp.fs
 require time.fs
 require respond.fs
+require standard-macros.fs
 
 end-of-url &parameters - constant /parameters
 : oops              s" m-index.fs" included bye ;
@@ -23,7 +24,7 @@ variable which
 : invoke   >r ;
 : safely   r>  article >r  which @ @ articleWithId!  invoke  r> article! ;
 
-: url      safely s" http://www.falvotech.com/blog2/blog.fs/articles/" respond  articleId s>d <# #s #> respond ;
+: url      safely s" http://" respond domain~ s" /" respond path~ s" /blog.fs/articles/" respond  articleId s>d <# #s #> respond ;
 : +span    s\" <a href=\"" respond url s\" \">" respond ;
 : +/span   s" </a>" respond ;
 : +label   safely title gob! get, ;
