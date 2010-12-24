@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
  <channel>
   <title>Samuel's All New New News News</title>
-  <link>http://www.falvotech.com/blog</link>
+  <link>http://~domain~ /~path~ </link>
   <description>Touching upon computers, electronics, programming, and other matters of personal interest to Samuel.</description>
   <language>en</language>
   <generator>Unsuitable</generator>
