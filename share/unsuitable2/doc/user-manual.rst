@@ -25,6 +25,7 @@ Presently, you can obtain Unsuitable 2 most easily using the Mercurial version c
   mkdir -p /opt/local
   cd /opt/local
   hg clone https://bitbucket.org/kc5tja/unsuitable
+  chmod -R a+r unsuitable
   exit  (become a normal user again)
   export UNSUITABLE=/opt/local/unsuitable/share/unsuitable2
 
@@ -50,12 +51,22 @@ After completing this step, you'll need to create the directories where the blog
   mkdir -p /Files/WWW/example.com/htdocs/blog
   cd /Files/WWW/example.com/htdocs/blog
 
-Next, you'll create a landing page for the blog, which is typically named <tt>blog.fs</tt>.  This page serves as a trampoline of sorts, allowing the blog software to run without actually requiring the blog software to exist at this location.  This improves website security.
+Next, you'll create a landing page for the blog, which is typically named <tt>blog.fs</tt>.  This page serves as a trampoline of sorts, allowing the blog software to run without actually requiring the blog software to exist at this location.  This improves website security, should the web server itself become compromised.
 
 ::
 
   #! /usr/local/env gforth
   require /opt/local/unsuitable/share/unsuitable2/blog.fs
 
-After you save the trampoline <tt>blog.fs</tt>, restart your web server software to make sure it picks up the new configurations.
+The <tt>theme</tt> directory will need to be installed locally as well, for the blog software relies on relative paths.
+
+::
+
+  cp -r $UNSUITABLE/theme .
+
+After you complete these installation steps, restart your web server software to make sure it picks up the new configurations.  If you access your configured location (e.g., <tt>http://www.example.com/blog</tt> or <tt>http://www.example.com/blog/blog.fs</tt>), you should see a diagnostic indicating a complete installation:
+
+  The blog appears to have been installed correctly; however, no articles exist in the message database.
+
+Later, once article submissions to the blog appear, a process explained later in this document, you'll see the top-level index page instead of the diagnostic.
 
