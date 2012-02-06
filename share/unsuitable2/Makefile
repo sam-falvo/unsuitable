@@ -9,6 +9,12 @@ ${NWDOC}: ${LYXDOC}
 blog.fs: ${NWDOC}
 	notangle -Rblog.fs $< >blog.fs
 
+test-blog.fs: ${NWDOC}
+	notangle -Rtest-blog.fs $< >test-blog.fs
+
+test: test-blog.fs blog.fs ${LIBS}
+	gforth test-blog.fs
+
 lib/views.fs: ${NWDOC}
 	mkdir -p lib
 	notangle -Rlib/views.fs $< >lib/views.fs
