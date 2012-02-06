@@ -1,7 +1,7 @@
 PRJ=unsuitable
 LYXDOC=${PRJ}.lyx
 NWDOC=${PRJ}.nw
-LIBS=lib/views.fs
+LIBS=lib/views.fs lib/import.fs
 
 ${NWDOC}: ${LYXDOC}
 	lyx -e literate $< > $@
@@ -19,8 +19,9 @@ lib/views.fs: ${NWDOC}
 	mkdir -p lib
 	notangle -Rlib/views.fs $< >lib/views.fs
 
-t: blog.fs ${LIBS}
-	gforth blog.fs
+lib/import.fs: ${NWDOC}
+	mkdir -p lib
+	notangle -Rlib/import.fs $< >lib/import.fs
 
 clean:
 	rm -f blog.fs ${NWDOC}

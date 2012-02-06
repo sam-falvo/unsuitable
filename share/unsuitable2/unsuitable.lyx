@@ -384,6 +384,7 @@ defer included
 \end_layout
 
 \begin_layout Scrap
+
 : include     parse-name included ;
 \end_layout
 
@@ -434,6 +435,7 @@ defer included
 \end_layout
 
 \begin_layout Scrap
+
 
 \backslash
  resource without a trailing slash.
@@ -578,11 +580,13 @@ inc blog.fs
 
 \begin_layout Scrap
 
+
 \backslash
 
 \end_layout
 
 \begin_layout Scrap
+
 
 \backslash
  Article URLs must always have an article ID supplied as a parameter.
@@ -590,11 +594,13 @@ inc blog.fs
 
 \begin_layout Scrap
 
+
 \backslash
  If no ID appears in the URL, we resort to rendering the index page,
 \end_layout
 
 \begin_layout Scrap
+
 
 \backslash
  just as we did with Unsuitable 1B.
@@ -626,10 +632,12 @@ inc blog.fs
 \end_layout
 
 \begin_layout Scrap
+
  
 \end_layout
 
 \begin_layout Scrap
+
 
 \backslash
     AS A: blog administrator
@@ -637,11 +645,13 @@ inc blog.fs
 
 \begin_layout Scrap
 
+
 \backslash
   I WANT: to prohibit site cracking through malformed resource URIs
 \end_layout
 
 \begin_layout Scrap
+
 
 \backslash
  SO THAT: I can have higher confidence in the software.
@@ -649,11 +659,13 @@ inc blog.fs
 
 \begin_layout Scrap
 
+
 \backslash
 
 \end_layout
 
 \begin_layout Scrap
+
 
 \backslash
  Another approach towards attempting to compromise the system is to
@@ -661,11 +673,13 @@ inc blog.fs
 
 \begin_layout Scrap
 
+
 \backslash
  pass one or more parameters in the hopes that it will overflow a
 \end_layout
 
 \begin_layout Scrap
+
 
 \backslash
  buffer.
@@ -673,6 +687,7 @@ inc blog.fs
 \end_layout
 
 \begin_layout Scrap
+
 
 \backslash
  modules.
@@ -694,6 +709,7 @@ inc blog.fs
 \end_layout
 
 \begin_layout Scrap
+
 ' i is included
 \end_layout
 
@@ -732,27 +748,33 @@ done bye
 \end_layout
 
 \begin_layout Scrap
+
 variable a
 \end_layout
 
 \begin_layout Scrap
+
 variable b
 \end_layout
 
 \begin_layout Scrap
+
 variable l
 \end_layout
 
 \begin_layout Scrap
+
 : -eos               b @ a @ l @ + u< if exit then  a @ l @ r> drop ;
 \end_layout
 
 \begin_layout Scrap
+
 : -/                 b @ c@ [char] / xor if exit then  a @ b @ over - r>
  drop ;
 \end_layout
 
 \begin_layout Scrap
+
 : scan               begin -eos -/ 1 b +! again ;
 \end_layout
 
@@ -782,6 +804,7 @@ variable l
 \end_layout
 
 \begin_layout Scrap
+
 : filename           path-info-length 1 u> if module else default then ;
 \end_layout
 
@@ -878,7 +901,35 @@ If the articles database is empty, clearly we cannot generate any meaningful
  index.
  In this case, we want to deliver instead a diagnostic message letting the
  blog administrator know that everything is OK despite the lack of articles.
- Otherwise, if at least one article exists in the database, then we want
+\end_layout
+
+\begin_layout Scrap
+
+<<Index Page Settings>>=
+\end_layout
+
+\begin_layout Scrap
+
+: diagnostic
+\end_layout
+
+\begin_layout Scrap
+
+  ." <p>The blog appears to have been installed correctly; "
+\end_layout
+
+\begin_layout Scrap
+
+  ." however, no articles exist in the message database.</p>" ;
+\end_layout
+
+\begin_layout Scrap
+
+@ %def diagnostic
+\end_layout
+
+\begin_layout Standard
+Otherwise, if at least one article exists in the database, then we want
  to make sure we show only the last 
 \begin_inset Formula $n$
 \end_inset
@@ -888,6 +939,26 @@ If the articles database is empty, clearly we cannot generate any meaningful
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Scrap
+
+<<Index Page Settings>>=
+\end_layout
+
+\begin_layout Scrap
+
+: max-articles-on-index-page
+\end_layout
+
+\begin_layout Scrap
+
+  5 ;
+\end_layout
+
+\begin_layout Scrap
+
+@ %def max-articles-on-index-page
 \end_layout
 
 \begin_layout Scrap
@@ -993,6 +1064,47 @@ indexPage bye
 \begin_layout Scrap
 
 @
+\end_layout
+
+\begin_layout Chapter
+
+Configuration
+\end_layout
+
+\begin_layout Standard
+
+Unsuitable cannot operate without some amount of configuration.
+ An administrator should adjust the following configuration file to suit
+ his or her needs prior to the site becoming publicly visible.
+\end_layout
+
+\begin_layout Scrap
+
+<<lib/config.fs>>=
+\end_layout
+
+\begin_layout Scrap
+
+<<Index Page Settings>>
+\end_layout
+
+\begin_layout Scrap
+
+<<View Settings>>
+\end_layout
+
+\begin_layout Scrap
+
+<<Publication Import Settings>>
+\end_layout
+
+\begin_layout Scrap
+
+@
+\end_layout
+
+\begin_layout Scrap
+
 \end_layout
 
 \begin_layout Chapter
@@ -1105,6 +1217,26 @@ blog-address
 id
 \shape default
 .
+\end_layout
+
+\begin_layout Scrap
+
+<<View Settings>>=
+\end_layout
+
+\begin_layout Scrap
+
+: base-blog-http
+\end_layout
+
+\begin_layout Scrap
+
+  ." http://www.falvotech.com/blog3/blog.fs" ;
+\end_layout
+
+\begin_layout Scrap
+
+@ %def base-blog-http
 \end_layout
 
 \begin_layout Scrap
@@ -1244,6 +1376,91 @@ RSS Item View
 \begin_layout Scrap
 
 @
+\end_layout
+
+\begin_layout Chapter
+
+Importing File Contents
+\end_layout
+
+\begin_layout Standard
+Unsuitable 2 presently takes its publication data in the form of files,
+ located in well-known locations.
+ These locations are determined by settings in the lib/config.fs file.
+\end_layout
+
+\begin_layout Scrap
+
+<<Publication Import Settings>>
+\lang english
+=
+\end_layout
+
+\begin_layout Scrap
+
+: article-body-file
+\end_layout
+
+\begin_layout Scrap
+
+  s" /tmp/body" ;
+\end_layout
+
+\begin_layout Scrap
+
+: article-abstract-file
+\end_layout
+
+\begin_layout Scrap
+
+  s" /tmp/abstract" ;
+\end_layout
+
+\begin_layout Scrap
+
+@ %def article-body-file article-abstract-file
+\end_layout
+
+\begin_layout Scrap
+Given a filename to work with, we'll need a means of loading the contents
+ of the file so that we can manipulate or store the contents in the article
+ database.
+\end_layout
+
+\begin_layout Scrap
+<<lib/import.fs>>=
+\end_layout
+
+\begin_layout Scrap
+variable h
+\end_layout
+
+\begin_layout Scrap
+: open     r/o bin open-file throw h ! ;
+\end_layout
+
+\begin_layout Scrap
+: close    h @ close-file throw ;
+\end_layout
+
+\begin_layout Scrap
+: part     here 1024 h @ read-file throw dup allot ;
+\end_layout
+
+\begin_layout Scrap
+: input    begin part 0= until ;
+\end_layout
+
+\begin_layout Scrap
+: ingest   here input here over - ;
+\end_layout
+
+\begin_layout Scrap
+: import   open ['] ingest catch close throw ;
+\end_layout
+
+\begin_layout Scrap
+@ %def import
 \end_layout
 
 \end_body
