@@ -1,0 +1,2 @@
+: reserve   gosWofs@ + gosWofs! ;
+
