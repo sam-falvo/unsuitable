@@ -9,3 +9,7 @@
   ." however, no articles exist in the message database.</p>"
 ;
 
+1 constant /column ( in blocks )
+66 constant gosAddrsBlock
+gosAddrsBlock /column + constant gosLensBlock
+
