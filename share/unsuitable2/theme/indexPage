@@ -1,0 +1,13 @@
+Status: 200
+Content-Type: text/html
+
+<html>
+ <head>
+  <title>Sam's All New, New and Improved, New News News</title>
+ </head>
+ <body>
+  <hr />
+  ~content
+  <hr />
+ </body>
+</html>
