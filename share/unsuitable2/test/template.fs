@@ -13,9 +13,7 @@ variable dlen
 : t50.0     s dlen @ srcText nip xor abort" t50.0" ;
 : t50.1     s srcText dst @ dlen @ compare abort" t50.1" ;
 : t50       t50.0 t50.1 ;
-.s cr
 t50
-.s cr
 
 variable macros-called
 : mymacro   1 macros-called +!  ." YAY!" >con cr cr .s cr cr >buf ;
@@ -26,9 +24,7 @@ variable macros-called
 : s         init >buf expand >con here dst @ - dlen ! ;
 : t51.0     s macros-called @ 0= abort" t51.0" ;
 : t51       t51.0 ;
-.s cr
 t51
-.s cr
 
 done
 
