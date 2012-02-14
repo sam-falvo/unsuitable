@@ -16,7 +16,7 @@ variable dlen
 t50
 
 variable macros-called
-: mymacro   1 macros-called +!  ." YAY!" >con cr cr .s cr cr >buf ;
+: mymacro   1 macros-called +!  ." YAY!" ;
 
 : srcText   S" A sample text with ~mymacro , a macro expansion!" ;
 : expText   S" A sample text with YAY!, a macro expansion!" ;
