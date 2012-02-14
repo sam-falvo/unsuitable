@@ -1,4 +1,4 @@
-require lib/contents.fs
+require ../lib/contents.fs
 
 variable src
 variable len
