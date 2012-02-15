@@ -3,7 +3,7 @@ Content-Type: text/html
 
 <html>
  <head>
-  ~.blog-title
+  <title>~.blog-title </title>
  </head>
  <body>
   <form method="POST" action=".">

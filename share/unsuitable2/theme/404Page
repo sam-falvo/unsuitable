@@ -1,0 +1,14 @@
+Status: 404 Not Found
+Content-Type: text/html
+
+<html>
+ <head>
+  <title>Not Found</title>
+ </head>
+ <body>
+  <h1>Not Found</h1>
+  <p>
+   Resource not found
+  </p>
+ </body>
+</html>
