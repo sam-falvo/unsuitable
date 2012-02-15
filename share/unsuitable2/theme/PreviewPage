@@ -6,22 +6,25 @@ Content-Type: text/html
   <title>~.blog-title </title>
  </head>
  <body>
-  <form method="POST" action=".">
+  <form method="POST" action="./">
    <table width="100%" border="0px">
     <tr>
      <td colspan="2">~.article-error </td>
     </tr>
     <tr>
      <td>Title</td>
-     <td><input type="textarea" name="article-title" value="~.article-title " /></td>
+     <td><textarea name="article-title">~.article-title </textarea></td>
     </tr>
     <tr>
      <td>Abstract</td>
-     <td><input type="textarea" name="article-abstract" value="~.article-abstract " /></td>
+     <td><textarea name="article-abstract">~.article-abstract </textarea></td>
     </tr>
     <tr>
      <td>Body (optional)</td>
-     <td><input type="textarea" name="article-body" value="~.article-body " /></td>
+     <td><textarea name="article-body">~.article-body </textarea></td>
+    </tr>
+    <tr>
+     <td colspan="2"><input type="submit" value="PREVIEW" /></td>
     </tr>
    </table>
   </form>
