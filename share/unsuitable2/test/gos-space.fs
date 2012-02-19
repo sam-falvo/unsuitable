@@ -17,6 +17,8 @@ variable src
 variable dst ( unused in this test )
 variable len
 
+256 constant gosBlobBlock
+512 constant /gos-space
 include ../lib/gos-space.fs
 
 : t20.0   15360 1024 x!32  1024 reserve  1024 x@32 16384 xor abort" t20.0" ;
@@ -48,6 +50,8 @@ variable len
 
 : foo len ;
 
+256 constant gosBlobBlock
+512 constant /gos-space
 include ../lib/gos-space.fs
 
 : s       srcbuf src !  100 dst !  1024 len !  out ;
@@ -102,6 +106,8 @@ variable dst
 : gosWofs!  dst ! ;
 : gosWofs@  dst @ ;
 
+256 constant gosBlobBlock
+512 constant /gos-space
 include ../lib/gos-space.fs
 
 : s       savbuf 10240 0 fill  datbuf src ! 150 dst ! 3072 len ! ;
@@ -136,6 +142,8 @@ variable dst
 variable len
 : gosWofs!  src ! ;
 : gosWofs@  src @ ;
+256 constant gosBlobBlock
+512 constant /gos-space
 include ../lib/gos-space.fs
 
 : s       ldbuf 4096 0 fill  150 src !  ldbuf dst ! 1024 len !  inp ;
