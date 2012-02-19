@@ -24,7 +24,8 @@ Content-Type: text/html
      <td><textarea name="article-body">~.article-body </textarea></td>
     </tr>
     <tr>
-     <td colspan="2"><input type="submit" value="PREVIEW" /></td>
+     <td>Challenge: ~.challenge <br /><input type="hidden" name="chl" value="~.challenge " /><input type="text" name="rsp" /></td>
+     <td><input type="submit" value="PREVIEW" /></td>
     </tr>
    </table>
   </form>

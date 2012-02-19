@@ -19,3 +19,4 @@ gosAddrsBlock /column + constant gosLensBlock
                     256 constant gosBlobBlock
                     512 constant /gos-space
 
+              $76543210 constant authKey
