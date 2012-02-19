@@ -1,3 +1,4 @@
-: empty?	0 ;
-: #articles	1 ;
+: empty?        0 ;
+: #articles     1 ;
+: articlesFree  1 ;
 

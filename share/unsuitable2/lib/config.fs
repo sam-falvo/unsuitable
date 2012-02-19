@@ -1,3 +1,5 @@
+use /home/lighttpd/WWW/falvotech.com/htdocs/blog3/blocks.fb
+
 : max-articles-on-index-page
   5 ;
 
@@ -9,7 +11,11 @@
   ." however, no articles exist in the message database.</p>"
 ;
 
-1 constant /column ( in blocks )
-66 constant gosAddrsBlock
+
+                      1 constant /column
+                     66 constant gosAddrsBlock
 gosAddrsBlock /column + constant gosLensBlock
+
+                    256 constant gosBlobBlock
+                    512 constant /gos-space
 

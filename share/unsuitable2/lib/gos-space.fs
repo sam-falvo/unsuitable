@@ -12,15 +12,18 @@
 \ gosWofs! ( n - ) updates the current GOS space write pointer offset.
 \ core ( xa - ca ) converts an xspace address into a core address.
 
-: reserve   gosWofs@ + gosWofs! ;
+: reserve               gosWofs@ + gosWofs! ;
 
-: ct        1024 gosWofs@ 1023 and -  len @  min ;
-: advanced  ct >r  r@ src +!  r@ reserve  r> negate len +! ;
-: out       src @ ct gosWofs@ core swap move update advanced ;
-: keep      begin len @ while out repeat ;
+: ct                    1024 gosWofs@ 1023 and -  len @  min ;
+: advanced              ct >r  r@ src +!  r@ reserve  r> negate len +! ;
+: out                   src @ ct gosWofs@ core swap move update advanced ;
+: keep                  begin len @ while out repeat ;
 
-: ct        1024 src @ 1023 and -  len @ min ;
-: advanced  ct >r  r@ src +!  r@ dst +!  r> negate len +! ;
-: inp       src @ core dst @ ct move advanced ;
-: retrieve  begin len @ while inp repeat ;
+: ct                    1024 src @ 1023 and -  len @ min ;
+: advanced              ct >r  r@ src +!  r@ dst +!  r> negate len +! ;
+: inp                   src @ core dst @ ct move advanced ;
+: retrieve              begin len @ while inp repeat ;
+
+: gosWLimit             gosBlobBlock /gos-space + blocks ;
+: gosSpaceAvailable?    gosWLimit swap - gosWofs@ u> ;
 
