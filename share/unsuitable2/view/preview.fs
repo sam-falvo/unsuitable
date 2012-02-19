@@ -40,7 +40,8 @@ create buf      4096 allot
 : paramString   here ptr ! fileIn here ptr @ - len ! ;
 : form          here src !  S" theme/PreviewPage" contents  src @ here over - len !
                 here outp !  expand  here outp @ - type ;
-: POST          paramString kvparse form ;
+: +auth		;
+: POST          paramString kvparse +auth form ;
 : GET           0 titleLen !  0 absLen !  0 bodyLen !  form ;
 : requestMethod s" REQUEST_METHOD" getenv ;
 : -POST         requestMethod s" POST" compare if exit then  POST r> drop ;
