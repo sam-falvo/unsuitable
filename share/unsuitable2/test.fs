@@ -8,3 +8,4 @@ include test/urldecode.fs
 include test/kvparse.fs
 include test/escaper.fs
 include test/permuter.fs
+include test/articles-db.fs

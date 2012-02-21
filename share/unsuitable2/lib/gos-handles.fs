@@ -24,6 +24,12 @@
 : +span                 >r 2dup + /gos-space u> abort" E006: Invalid GOS blob length" r> ;
 : set                   +ofs +len +span handle> swap over length! offset! ;
 
+\ Get a GOS handle
+
+: offset@		gosAddrs + x@32 ;
+: length@		gosLens + x@32 ;
+: get 			handle> dup offset@ swap length@ ;
+
 \ Check to see if at least one open article slot exists.
 
 : -free                         dup x@32 $FFFFFFFF = if swap 1+ swap then ;

@@ -9,6 +9,8 @@
   ." however, no articles exist in the message database.</p>"
 ;
 
+: author-name
+  s" Samuel A. Falvo II" ;
 
                       1 constant /column
                      66 constant gosAddrsBlock
@@ -18,3 +20,11 @@ gosAddrsBlock /column + constant gosLensBlock
                     512 constant /gos-space
 
               $76543210 constant authKey
+
+                           2 constant /artDbColumn
+                          68 constant articleIds
+   articleIds /artDbColumn + constant titles
+       titles /artDbColumn + constant abstracts
+    abstracts /artDbColumn + constant bodies
+       bodies /artDbColumn + constant timestamps
+

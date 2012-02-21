@@ -1,6 +1,9 @@
-: id		1 ;
-: title		S" How the Blog was Won" ;
-: author	S" Samuel A. Falvo II" ;
-: abstract 	S" It was a dark and stormy night..." ;
-: hasBody? 	0 ;
+: id            id@ ;
+: g             get len ! src ! here dst ! retrieve
+                here dst @ over - dup allot ;
+: title         title@ g ;
+: author        author-name ;
+: abstract      abstract@ g ;
+: hasBody?      body@ $FFFFFFFF xor ;
+: body          body@ g ;
 
