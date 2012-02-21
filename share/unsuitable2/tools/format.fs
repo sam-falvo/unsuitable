@@ -11,6 +11,7 @@ include ../lib/gos-handles.fs
 : space 	gosBlobBlock blocks gosWofs! ;
 : handles 	gosAddrsBlock blocks /column blocks $FF xfill ;
 : gos0	 	handles space ;
-: format 	gos0 ;
+: articleDb0	0 artDbId! ;
+: format 	gos0 articleDb0 ;
 
 format

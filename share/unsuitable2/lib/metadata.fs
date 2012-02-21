@@ -4,3 +4,6 @@
 : gosWofs@   meta blocks x@32 ;
 : gosWofs!   meta blocks x!32 ;
 
+: artDbId@   meta blocks 4 + x@32 ;
+: artDbId!   meta blocks 4 + x!32 ;
+

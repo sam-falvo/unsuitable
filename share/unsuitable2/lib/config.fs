@@ -1,5 +1,3 @@
-use /home/lighttpd/WWW/falvotech.com/htdocs/blog3/blocks.fb
-
 : max-articles-on-index-page
   5 ;
 
