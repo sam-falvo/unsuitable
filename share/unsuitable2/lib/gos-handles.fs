@@ -16,12 +16,13 @@
 : length!               gosLens + x!32 ;
 : range                 dup /column blocks u>= abort" E002: Invalid GOS handle" ;
 : handle>               2* 2* range ;
+: /gos-space(b)		/gos-space blocks ;
 : 0<n<=/spc             dup 0= abort" E003: Invalid GOS blob length"
-                        dup /gos-space u> abort" E004: Invalid GOS blob length" ;
-: 0<=n</spc             dup /gos-space u< 0= abort" E005: Invalid GOS offset" ; 
+                        dup /gos-space(b) u> abort" E004: Invalid GOS blob length" ;
+: 0<=n</spc             dup /gos-space(b) u< 0= abort" E005: Invalid GOS offset" ; 
 : +len                  >r 0<n<=/spc r> ;
 : +ofs                  >r >r 0<=n</spc r> r> ;
-: +span                 >r 2dup + /gos-space u> abort" E006: Invalid GOS blob length" r> ;
+: +span                 >r 2dup + /gos-space(b) u> abort" E006: Invalid GOS blob length" r> ;
 : set                   +ofs +len +span handle> swap over length! offset! ;
 
 \ Get a GOS handle

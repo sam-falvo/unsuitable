@@ -15,7 +15,7 @@ create bfr   1024 allot
 : /column         1 ;
 : gosAddrsBlock   66 ;
 : gosLensBlock    gosAddrsBlock /column + ;
-: /gos-space      10240 ;
+: /gos-space      10 ;
 : update          ;
 : block           drop bfr ;
 : x@32            drop ctr @ if 12345 else $FFFFFFFF then  -1 ctr +! ;
@@ -43,9 +43,9 @@ t31
 : t32.0      s  0 1 257 set  abort-called @ 0= abort" t32.0" ;
 : t32.1      s  0 1 1 set  abort-called @ abort" t32.1" ;
 : t32.2      s  $FFFFFFFF 0 1 set  abort-called @ 0= abort" t32.2" ;
-: t32.3      s  0 /gos-space 1 set  abort-called @ abort" t32.3" ;
-: t32.4      s  /gos-space 2 -  5 1 set  abort-called @ 0= abort" t32.4" ;
-: t32.5      s  /gos-space 2 -  2 1 set  abort-called @ abort" t32.5" ;
+: t32.3      s  0 /gos-space blocks 1 set  abort-called @ abort" t32.3" ;
+: t32.4      s  /gos-space blocks 2 -  5 1 set  abort-called @ 0= abort" t32.4" ;
+: t32.5      s  /gos-space blocks 2 -  2 1 set  abort-called @ abort" t32.5" ;
 : t32        t32.0 t32.1 t32.2 t32.3 t32.4 t32.5 ;
 t32
 
