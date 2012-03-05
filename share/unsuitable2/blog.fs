@@ -13,7 +13,7 @@ require lib/articles-db.fs
 require lib/gos-space.fs
 require lib/gos-handles.fs
 require lib/article.fs
-require lib/views.fs
+  require lib/views.fs
 require lib/contents.fs
 
 variable src

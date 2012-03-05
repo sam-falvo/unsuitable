@@ -12,6 +12,9 @@
 : author-name
   s" Samuel A. Falvo II" ;
 
+: author-email
+  s" kc5tja -at- arrl.net" ;
+
                       1 constant /column
                      66 constant gosAddrsBlock
 gosAddrsBlock /column + constant gosLensBlock

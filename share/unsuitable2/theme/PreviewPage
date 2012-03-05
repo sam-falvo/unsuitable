@@ -4,24 +4,28 @@ Content-Type: text/html
 <html>
  <head>
   <title>~.blog-title </title>
+  <link href="/blog2/theme/css.css" rel="stylesheet" />
  </head>
  <body>
+  <p>
+   Scroll down to see the most recent preview, if any.
+  </p>
   <form method="POST" action="./">
    <table width="100%" border="0px">
     <tr>
-     <td colspan="2">~.article-error </td>
+     <td colspan="2">~escaped ~.article-error </td>
     </tr>
     <tr>
      <td>Title</td>
-     <td><textarea name="article-title">~.article-title </textarea></td>
+     <td><textarea name="article-title">~escaped ~.article-title </textarea></td>
     </tr>
     <tr>
      <td>Abstract</td>
-     <td><textarea name="article-abstract">~.article-abstract </textarea></td>
+     <td><textarea name="article-abstract">~escaped ~.article-abstract </textarea></td>
     </tr>
     <tr>
      <td>Body (optional)</td>
-     <td><textarea name="article-body">~.article-body </textarea></td>
+     <td><textarea name="article-body">~escaped ~.article-body </textarea></td>
     </tr>
     <tr>
      <td>Challenge: ~.challenge <br /><input type="hidden" name="chl" value="~.challenge " /><input type="text" name="rsp" /></td>
@@ -29,6 +33,18 @@ Content-Type: text/html
     </tr>
    </table>
   </form>
+  <hr />
+  <h1>
+   Index Page Preview
+  </h1>
+  <hr />
+  ~indexItem
+  <hr />
+  <h1>
+   Article Preview
+  </h1>
+  <hr />
+  ~articleItem
  </body>
 </html>
 
