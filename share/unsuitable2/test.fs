@@ -9,3 +9,5 @@ include test/kvparse.fs
 include test/escaper.fs
 include test/permuter.fs
 include test/articles-db.fs
+include test/insertion-sort.fs
+
