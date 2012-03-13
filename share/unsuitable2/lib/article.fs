@@ -7,4 +7,5 @@
 : abstract      abstract@ g ;
 : hasBody?      body@ $FFFFFFFF xor ;
 : body          body@ g ;
+: timestamp     timestamp@ ;
 

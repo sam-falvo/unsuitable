@@ -6,8 +6,8 @@
 : div(          ." <div class=" q type q ." >" ;
 : div)          ." </div>" ;
 : .title 	S" blogArticleIndexTitle" div( a( title type a) div) ;
-: timestamp     S" 2011 Apr 14 12:35 PDT" ;
-: .timestamp	timestamp type ;
+: ts            S" 2011 Apr 14 12:35 PDT" ;
+: .timestamp	ts type ;
 : .author	author type ;
 : .when		S" blogArticleIndexTimestamp" div( .timestamp ."  &mdash; " .author div) ;
 : .abstract	S" blogArticleIndexLead" div( abstract type div) ;
