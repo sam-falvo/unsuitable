@@ -18,12 +18,27 @@ variable dst
 
 create challengeBuf     16 allot
 
+include ../lib/escaper.fs
+: title 		titlePtr @ titleLen @ ;
+: author 		author-name ;
+: email			author-email ;
+: abstract 		absPtr @ absLen @ ;
+: body 			bodyPtr @ bodyLen @ ;
+: hasBody? 		bodyLen @ 0= 0= ;
+: id 			artDbId@ 1+ ;
+include ../lib/views.fs
+
+defer ?escape
+: (no-op) 		;
+: raw 			['] (no-op) is ?escape ;  raw
+: escaped               ['] escape is ?escape ;
 : .status               ." 200" ;
 : .blog-title           ." Sam's All New, New and Improved, New News News" ;
+: .html 		?escape type ;
 defer .article-error
-: .article-title        titlePtr @ titleLen @ type ;
-: .article-abstract     absPtr @ absLen @ type ;
-: .article-body         bodyPtr @ bodyLen @ type ;
+: .article-title        titlePtr @ titleLen @ .html ;
+: .article-abstract     absPtr @ absLen @ .html ;
+: .article-body         bodyPtr @ bodyLen @ .html ;
 : .challenge            challengeBuf 16 type ;
 
 : -abody        2dup s" article-body" compare if exit then
@@ -98,8 +113,8 @@ create buf      4096 allot
 : stream        buf 4096 stdin read-file throw buf over pl ;
 : fileIn        begin stream 0= until ;
 : paramString   here ptr ! fileIn here ptr @ - len ! ;
-: form          here src !  S" theme/PreviewPage" contents  src @ here over - len !
-                here outp !  expand  here outp @ - type ;
+: form          here src !  S" theme/PreviewPage" contents  here src @ - len !
+                here outp !  expand ;
 : +title        titleLen @ if exit then  titleMissing form  r> r> 2drop ;
 : +abs          absLen @ if exit then  absMissing form  r> r> 2drop ;
 : +artDb        articlesFree if exit then  noMoreArticles form r> r> 2drop ;
@@ -113,7 +128,7 @@ create buf      4096 allot
                 here 8 - 8 rspPtr @ rspLen @ compare if
                 noAccess form r> r> 2drop then ;
 : +valid        +auth +title +abs +artDb +gosSpace +gosHandles ;
-: publish       newArticle handles now posted  ;
+: publish       newArticle handles now posted ;
 : POST          paramString kvparse +valid publish s" index.fs" included ;
 : GET           0 titleLen !  0 absLen !  0 bodyLen !  form ;
 : requestMethod s" REQUEST_METHOD" getenv ;

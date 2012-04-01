@@ -8,6 +8,8 @@ variable offset
 : search        articleIds blocks -match 2drop 0 ;
 : article       search 0= abort" E010 Expected article not found" ;
 
+: available	$FFFFFFFF search 0= abort" E011 No more room in articles table" ;
+
 : field         blocks offset @ + ;
 : id@           articleIds field x@32 ;
 : id!           articleIds field x!32 ;
@@ -20,7 +22,7 @@ variable offset
 : timestamp@    timestamps field x@32 ;
 : timestamp!    timestamps field x!32 ;
 
-: posted        timestamp! body! abstract! title! artDbId@ id! ;
+: posted        available timestamp! body! abstract! title! artDbId@ id! ;
 
 : -free         dup x@32 $FFFFFFFF xor if exit then  swap 1+ swap ;
 : ct            begin -end -free 4 + again ;
@@ -28,16 +30,4 @@ variable offset
 
 : #articles     /artDbColumn blocks 2 rshift articlesFree - ;
 : empty?        #articles 0= ;
-
-
-variable callback
-variable end
-
-: perform       callback ! ;
-: consider      dup x@32 callback @ execute ;
-: start         articleIds blocks ;
-: -end          dup end @ u< if exit then r> 2drop ;
-: -used         dup x@32 $FFFFFFFF xor if consider then ;
-: allArticles   start dup /artDbColumn blocks + end !
-                begin -end -used 4 + again ;
 
