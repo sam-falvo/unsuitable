@@ -31,3 +31,14 @@ variable offset
 : #articles     /artDbColumn blocks 2 rshift articlesFree - ;
 : empty?        #articles 0= ;
 
+variable callback
+variable end
+
+: perform       callback ! ;
+: consider      dup x@32 callback @ execute ;
+: start         articleIds blocks ;
+: -end          dup end @ u< if exit then r> 2drop ;
+: -used         dup x@32 $FFFFFFFF xor if consider then ;
+: allArticles   start dup /artDbColumn blocks + end !
+                begin -end -used 4 + again ;
+
