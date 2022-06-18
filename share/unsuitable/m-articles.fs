@@ -24,7 +24,7 @@ variable which
 : invoke   >r ;
 : safely   r>  article >r  which @ @ articleWithId!  invoke  r> article! ;
 
-: url      safely s" http://" respond domain~ s" /" respond path~ s" /blog.fs/articles/" respond  articleId s>d <# #s #> respond ;
+: url      safely s" http://" respond domain~ path:code~ s" /blog.fs/articles/" respond  articleId s>d <# #s #> respond ;
 : +span    s\" <a href=\"" respond url s\" \">" respond ;
 : +/span   s" </a>" respond ;
 : +label   safely title gob! get, ;
@@ -44,7 +44,7 @@ create +/-
 variable s
 variable end
 : mime   ." Content-type: text/html" cr cr ;
-: valid   mime  here s ! s" theme/article.html" slurp here end ! s" response.fs" included bye ;
+: valid   mime  here s ! s" ../theme/article.html" slurp here end ! s" response.fs" included bye ;
 
 
 : exists:     dup -1 = if r> 2drop then ;
@@ -61,7 +61,7 @@ variable end
 : exists      nxt prv ;
 : row         dup articleIds - article! articleId -1 xor if exists then ;
 : -all        [ articleIds /afields + ] literal u< ;
-: scan        articleIds begin dup -all while row cell+ repeat drop ;
+: scan        articleIds begin dup -all while row word+ repeat drop ;
 
 
 &parameters 1+ constant &id

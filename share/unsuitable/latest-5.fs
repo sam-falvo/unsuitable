@@ -7,7 +7,7 @@ include latest.fs
 include standard-macros.fs
 
 : .gob     gob! get, ;
-: .goblink S\" <a href=\"/" respond path~ S\" /blog.fs/articles/" respond articleId s>d <# #s #> respond S\" \">" respond .gob S" </a>" respond ;
+: .goblink S\" <a href=\"" respond path:code~ S\" /blog.fs/articles/" respond articleId s>d <# #s #> respond S\" \">" respond .gob S" </a>" respond ;
 : div      respond execute s" </div>" respond ;
 : t        title .goblink ;
 : .title   ['] t S\" <div class=\"blogArticleIndexTitle\">" div ;

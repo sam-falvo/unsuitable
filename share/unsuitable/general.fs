@@ -12,14 +12,14 @@
 
 
 variable lrn
-: addr       addrs lrn @ + @f ;
-: length     lens lrn @ + @f ;
-: addr!      addrs lrn @ + !f ;
-: length!    lens lrn @ + !f ;
+: addr       addrs lrn @ + @f32 ;
+: length     lens lrn @ + @f32 ;
+: addr!      addrs lrn @ + !f32 ;
+: length!    lens lrn @ + !f32 ;
 : gob        lrn @ ;
 : gob!       lrn ! ;
-: available  addrs lens begin 2dup < while over @f -1 = if
-             drop addrs - exit then swap cell+ swap repeat
+: available  addrs lens begin 2dup < while over @f32 -1 = if
+             drop addrs - exit then swap word+ swap repeat
              abort" Out of GOB handles." ;
 : put        available gob! fence -rot dup length! archive addr! ;
 : get,       addr length retrieve, ;

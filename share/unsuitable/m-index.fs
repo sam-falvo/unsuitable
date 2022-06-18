@@ -14,7 +14,7 @@ require latest-5.fs
 
 variable s
 variable end
-here s ! S" theme/index.html" slurp here end !
+here s ! S" ../theme/index.html" slurp here end !
 include response.fs
 bye
 

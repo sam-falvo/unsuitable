@@ -1,3 +1,3 @@
 : domain~       *domain* respond ;
-: path~         *path* respond ;
-
+: path:code~    *path:code* respond ;
+: path:theme~   *path:theme* respond ;

@@ -7,5 +7,5 @@
 : sort     e0 ep ! begin eol nil Te<Tr Te>=Tr again ;
 : consider articleId -1 xor if sort then ;
 : scan     articleIds dup /afields + begin 2dup < while
-           over articleIds - article! consider swap cell+ swap repeat 2drop ;
+           over articleIds - article! consider swap word+ swap repeat 2drop ;
 
